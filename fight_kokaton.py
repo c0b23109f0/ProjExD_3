@@ -140,6 +140,21 @@ class Bomb:
         self.rct.move_ip(self.vx, self.vy)
         screen.blit(self.img, self.rct)
 
+class Score:
+    """
+    倒した爆弾を表示するスコア
+    爆弾は１点
+    """
+    score = 0
+    def __init__(self):
+        self.fonto = pg.font.SysFont("hgp創英角ﾎﾟｯﾌﾟ体", 30)
+        self.img = self.fonto.render(f"スコア：{Score.score}", 0, (0, 0, 255))
+        self.rct: pg.Rect = self.img.get_rect()
+        self.rct.center = 100, 600
+
+    def update(self, screen: pg.Surface):
+        self.img = self.fonto.render(f"スコア：{Score.score}", 0, (0, 0, 255))
+        screen.blit(self.img,self.rct)
 
 def main():
     pg.display.set_caption("たたかえ！こうかとん")
@@ -151,6 +166,9 @@ def main():
     bombs = [Bomb((255, 0, 0), 10) for _ in range(NUM_OF_BOMBS)]
     clock = pg.time.Clock()
     tmr = 0
+    pg.init()
+    score = Score()
+
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -185,9 +203,11 @@ def main():
             beam.update(screen)   
         for bomb in bombs:
             bomb.update(screen)
+        score.update(screen)
         pg.display.update()
         tmr += 1
         clock.tick(50)
+
 
 
 if __name__ == "__main__":
