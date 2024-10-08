@@ -7,7 +7,7 @@ import pygame as pg
 
 WIDTH = 1100  # ゲームウィンドウの幅
 HEIGHT = 650  # ゲームウィンドウの高さ
-NUM_OF_BOMBS = 25 #爆弾の個数
+NUM_OF_BOMBS = 5 #爆弾の個数
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -167,8 +167,6 @@ def main():
                 fonto = pg.font.Font(None, 80)
                 txt = fonto.render("Game Over", True, (255, 0, 0))
                 screen.blit(txt, [WIDTH//2-150, HEIGHT//2])
-                pg.display.update()
-                time.sleep(5)
                 pg.display.update()
                 time.sleep(1)
                 return
