@@ -207,9 +207,9 @@ def main():
 
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
-        for beam in beams:
+        for beam in beams:  #リストにビームがあるのならば
             beam.update(screen)   
-        for bomb in bombs:
+        for bomb in bombs:  #リストに爆弾があるのならば
             bomb.update(screen)
         score.update(screen)
         pg.display.update()
